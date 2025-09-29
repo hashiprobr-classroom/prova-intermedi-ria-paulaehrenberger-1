@@ -6,6 +6,10 @@ import java.util.List;
 public class Lista {
     private List<Tarefa>tarefas;
 
+    public List<Tarefa> getTarefas() {
+        return tarefas;
+    }
+
     public Lista() {
         this.tarefas = new ArrayList<>();
     }

@@ -25,7 +25,7 @@ public class Data extends Momento{
         limite.put(10, 31);
         limite.put(11, 30);
         limite.put(12, 31);
-        //this.limite = limite;
+
     }
 
     public int getAno() {
@@ -41,9 +41,9 @@ public class Data extends Momento{
     }
 
     public void atualiza(int novoAno, int novoMes, int novoDia){
-        ano= ajuste(novoAno, 1, 1970);
+        ano= ajuste(novoAno, 1970, 2070);
         mes=ajuste(novoMes, 1, 12);
-        dia=ajuste(novoDia, 1, limite.get(novoMes));
+        dia=ajuste(novoDia, 1, limite.get(mes));
     }
 
 
@@ -51,6 +51,7 @@ public class Data extends Momento{
     public int minutos() {
         int minutostotais=0;
         int minutosnoano=0;
+        int diasmeses=0;
 
         //quantos min tem no ano
         for (int mes : limite.keySet()){
@@ -59,15 +60,15 @@ public class Data extends Momento{
         }
         minutostotais+=(ano-1970)*minutosnoano;
 
-        //quantas min tem até o (mes -1)
-        for (int mes : limite.keySet()){
-            for(int i =0; i<mes;i++){
-            int diasnomes=limite.get(mes);
-            minutostotais+=diasnomes*24*60;
-        }}
+        for (int i =1; i<(mes);i++){
+            diasmeses+= limite.get(mes);
+        }
+
+        minutostotais+=diasmeses*24*60;
 
         //quantos minutos no dias do mes(dia-1 pq é meia noite)
         minutostotais+= ((dia-1)*24*60);
+
 
 
         return minutostotais;

@@ -36,7 +36,7 @@ public class DataHorario extends Momento {
     public int minutos() {
         int ate_meianoite= data.minutos();
         ate_meianoite+=minuto;
-        ate_meianoite+=(hora*24);
+        ate_meianoite+=(hora*60);
         return ate_meianoite;
     }
 }
